@@ -6,8 +6,8 @@ import processing.core.PApplet;
  * Class for keeping time.
  * 
  * <p>
- * Part of Timing Utilities library containing a number of useful classes for time-keeping in Processing.
- * <br>
+ * Part of Timing Utilities library containing a number of useful classes
+ * for time-keeping in Processing.<br>
  * Built using Eclipse Mars IDE.
  * </p>
  * @author Lord of Galaxy
@@ -17,21 +17,17 @@ import processing.core.PApplet;
  * @since 0.1b
  */
 public class Stopwatch {
-	private int start = 0;
-	private int pausedTime = 0;
-	private boolean paused = false;
-	private PApplet parent;
+	protected final PApplet parent;
+	protected int start, pausedTime;
+	protected boolean paused = true;
 
 	/**
 	 * Constructor for creating a Stopwatch
 	 * 
 	 * @param parent The parent PApplet (Processing sketch) that uses this instance
 	 */
-	public Stopwatch(PApplet parent) {
-		this.parent = parent;
-		pausedTime = 0;
-		paused = true;
-		start = parent.millis() - pausedTime;
+	public Stopwatch(final PApplet pa) {
+		start = (parent = pa).millis();
 	}
 
 	/**
@@ -46,8 +42,8 @@ public class Stopwatch {
 	 * Pauses the stopwatch
 	 */
 	public void pause() {
-		paused = true;
 		pausedTime = parent.millis() - start;
+		paused = true;
 	}
 
 	/**
@@ -70,13 +66,7 @@ public class Stopwatch {
 	 * @return Returns the current time in milliseconds as per the stopwatch
 	 */
 	public int time() {
-		int time = 0;
-		if (!paused) {
-			time = parent.millis() - start;
-		} else {
-			time = pausedTime;
-		}
-		return time;
+		return paused? pausedTime : parent.millis() - start;
 	}
 
 	/**
@@ -90,21 +80,21 @@ public class Stopwatch {
 	 * @return Returns the current no of seconds as per the stopwatch
 	 */
 	public int second() {
-		return (time() / 1000) % 60;
+		return time() / 1000 % 60;
 	}
 
 	/**
 	 * @return Returns the current no of minutes as per the stopwatch
 	 */
 	public int minute() {
-		return (time() / 60000) % 60;
+		return time() / 60_000 % 60;
 	}
 
 	/**
 	 * @return Returns the current no of hours as per the stopwatch
 	 */
 	public int hour() {
-		return time() / 3600000;
+		return time() / 3_600_000;
 	}
 
 	/**
@@ -112,5 +102,13 @@ public class Stopwatch {
 	 */
 	public boolean isPaused() {
 		return paused;
+	}
+
+	/**
+	 * @return Overrides toString() in order to get instance variables' state
+	*/
+	@Override 
+	public String toString() {
+		return "start: " + start + ", pausedTime: " + pausedTime + ", paused: " + paused;
 	}
 }
