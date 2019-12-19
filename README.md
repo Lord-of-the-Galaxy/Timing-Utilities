@@ -4,7 +4,9 @@ Timing utilities library for Processing. Version 0.1b.
 This library has a Stopwatch class right now for keeping time using the PApplet class' millis() method.  
 ~~Big update coming in a month :)~~
 
-Sorry that the update never came, I'm not sure when I'll be free to work on this again, but when I'm free you can be sure to expect an update with a lot of new features, some of them are already done too.
+~~Sorry that the update never came, I'm not sure when I'll be free to work on this again, but when I'm free you can be sure to expect an update with a lot of new features, some of them are already done too.~~
+
+Okay, I'm pretty certain this update is never gonna happen. Sorry.
 
 ## Installation 
 
